@@ -1,3 +1,45 @@
-h1 {
+#epic {
     color: blueviolet;
+    font-family: cursive;
 }
+#fun {
+    color: rgb(51, 218, 60);
+}
+h1 {
+    background: linear-gradient(-90deg, #35577D, #141E30);
+    font-family: Helvetica;
+    color: rgb(17, 151, 192);
+    text-align: center;
+    line-height: 2.5em;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    padding: 0px;
+}
+/* #jump {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    padding: 0px;
+    border: none;
+    border-bottom: 1px solid black;
+    padding-bottom: 2px;
+    padding-right: 10px;
+    padding-left: 10px;
+} */
+
+
+
+/* background-color: rgb(0, 0, 0); */
+
+/* code for a line on the screen:
+    border-bottom: 1px solid rgba(136, 21, 21, 0.5);
+    color: rgba(228, 44, 44, 0.5);
+    font-weight: 100;
+    font-size: 22px;
+    line-height: 24px;
+    padding-bottom: 30px;
+    text-align: left;
+    width: 70%;
+*/ 
+
+/*h1:hover so it loks different when mouse is hoverin above it*/
