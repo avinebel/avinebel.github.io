@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Flappy Bird</title>
+        <link href="./flappybirdstyle.css" rel="stylesheet" type="text/css">
+    </head>
+    <body>
+        <header>
+            <h1 class="flappybirdheading"><a href="./index.html">Avi's Games and Other Trinkets</a></h1>
+        </header>
+        <section id="flappy-bird">
+            <canvas id="flappyboard" width="400" height="200"></canvas>
+            <script>
+                // two canvas variables
+                // const flappycanvas = document.getElementById("flappyboard")
+                // const flappycanvas_ctx = flappycanvas.getContext("2d")
+                let gamePiece;
+
+                function startGame() {
+                    myGameArea.start();
+                    gamePiece = new component(30, 30, "red", 10, 120);
+                }
+                
+
+                var myGameArea = {
+                    canvas : document.createElement("canvas"),
+                    start : function() {
+                        this.canvas.width = 480;
+                        this.canvas.height = 270;
+                        this.context = this.canvas.getContext("2d");
+                        document.body.insertBefore(this.canvas, document.body.childNodes[0]);
+                        this.interval = setInterval(updateCanvas, 20)
+                    },
+                    clear : function() {
+                        this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                    },
+                }
+
+                function component(width, height, color, x, y) {
+                    this.width = width;
+                    this.height = height;
+                    this.x = x;
+                    this.y = y;
+                    function update() {
+                        ctx = myGameArea.context;
+                        ctx.fillStyle = color;
+                        ctx.fillRect(this.x, this.y, this.width, this.height);
+                    }
+                }
+                
+                function updateCanvas() {
+                    myGameArea.clear();
+                    gamePiece.x += 1
+                    gamePiece.update();
+                }
+            </script>
+        </section>
+    </body>
+</html>

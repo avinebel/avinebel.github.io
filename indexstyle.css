@@ -1,11 +1,7 @@
-#epic {
-    color: blueviolet;
-    font-family: cursive;
-}
-#fun {
-    color: rgb(51, 218, 60);
-}
-h1 {
+* {
+    margin: 0px;
+} 
+.heading {
     background: linear-gradient(-90deg, #35577D, #141E30);
     font-family: Helvetica;
     color: rgb(17, 151, 192);
@@ -15,7 +11,15 @@ h1 {
     height: 100%;
     margin: auto;
     padding: 0px;
+    top: 0;
+    left: 0;
+    position: relative;
+} 
+
+.heading a {
+    color: rgb(17, 151, 192);
 }
+
 /* #jump {
     text-align: center;
     font-family: Arial, Helvetica, sans-serif;
