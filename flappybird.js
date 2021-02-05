@@ -26,8 +26,9 @@ function create() {
         pole.body.setImmovable(true)
         pole.outOfBoundsKill = true;
         // poles.setCollideWorldBounds(true);
-        // if (pole.body.x <= 100) {
-        //   gameState.score += 1
+        // if (pole.x <= gameState.player.x) {
+        //   gameState.score += 1;
+        //   gameState.scoreText.setText(`Score: ${gameState.score}`)
         // }
     };
     const poleLoop = this.time.addEvent({
@@ -36,11 +37,32 @@ function create() {
         callbackScope: this,
         loop: true,
       });
+
+      // gameState.checkScore = function() {
+      //   for (let i = 0; poles[i].x < gameState.player.x; i += 1) {
+      //     gameState.score += 1;
+      //     gameState.scoreText.setText(`Score: ${gameState.score}`)
+      //   }
+      // }
+    // function scoreCheck() {
+    //     for (let i = 0; i < gameState.numPoles; i++) {
+    //      if (gameState.allPoles[i].x < gameState.player.x){
+    //       gameState.score += 1;
+    //       gameState.scoreText.setText(`Score: 69`)
+    //     }
+    //   }
+    // }
     
-    if (gameState.player.x === poles.x) {
-      gameState.score += 1;
-      gameState.scoreText.setText(`Score: ${gameState.score}`)
-    }
+    // const scoreCheckLoop = this.time.addEvent({
+    //   delay: 1,
+    //   callback: scoreCheck,
+    //   callbackScope: this,
+    //   loop: true
+    // });    
+      // if (poles.x = gameState.player.x) {
+      //   gameState.score += 1;
+      //   gameState.scoreText.setText(`Score: ${gameState.score}`)
+      // }
       
     this.physics.add.collider(gameState.player, poles, () => {
       this.physics.pause();
@@ -52,12 +74,48 @@ function create() {
         this.scene.restart();
       });
     })
+    
+    gameState.allPoles = poles.getChildren()
+    // gameState.numPoles = gameState.allPoles.length;
+
+    // gameState.flight = this.add.tween({
+    //   target: gameState.player,
+    //   x: 100,
+    //   ease: 'Linear',
+    //   duration: 1000,
+    //   repeat: 1,
+    //   yoyo: false,
+    //   onStart: function() {
+    //   gameState.player.angle += 1
+    //   },
+    //   onEnd: function(){
+    //     gameState.player.angle += -1
+    //   }
+    // })
 }
 
 function update() {
     if (gameState.cursors.up.isDown) {
         gameState.player.setVelocityY(-100)
-    } 
+        // gameState.player.setAngle(-20)
+    };
+    // gameState.flight.play()
+    // gameState.checkScore()
+    // for (let i = 0; i < gameState.numPoles; i++) {
+      //  if (gameState.allPoles[i].x < gameState.player.x){
+    //     gameState.score += 1;
+    //     gameState.scoreText.setText(`Score: 69`)
+      // }
+    // }
+    for (let i = 0; i < gameState.allPoles.length; i++) {
+      let pole = gameState.allPoles[i]
+      if (pole.x < gameState.player.x && !pole.scored) {
+        pole.scored = true
+        gameState.score += 1;
+        gameState.scoreText.setText(`Score: ${gameState.score}`)
+      }
+    }
+    // gameState.checkScore2;
 }
 
 const config = {
