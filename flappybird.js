@@ -27,8 +27,8 @@ function create() {
         // const yPos = Math.random() * ((config.height / 2) - 200);
         console.log(yPos)
         console.log(yPos + 425)
-        const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.2);
-        const pole2 = poles.create(1200, yPos + 425, 'pole').setOrigin(0.5, 0.2);
+        const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.3);
+        const pole2 = poles.create(1200, yPos + 425, 'pole').setOrigin(0.5, 0.3);
         pole1.setVelocityX(-100); 
         pole2.setVelocityX(-100); 
         // poles.setVelocityY(-200)
@@ -143,8 +143,7 @@ const config = {
       default: 'arcade',
       arcade: {
         gravity: { y: 200 },
-        enableBody: true,
-        debug: true
+        enableBody: true
       }
     },
     scene: {
