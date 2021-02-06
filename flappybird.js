@@ -18,13 +18,26 @@ function create() {
     const poles = this.physics.add.group();
 
     function createPole() {
-        const yPos = Math.random() * config.height; 
-        const pole = poles.create(1200, yPos, 'pole');
-        pole.setVelocityX(-100); 
+      //how to make it with holes, canvas height of 620
+      //i think the holes should be 200 gap
+        function getYPos(min, max) {
+          return Math.random() * (max - min) + min;
+        }
+        const yPos = getYPos(0, 50)
+        // const yPos = Math.random() * ((config.height / 2) - 200);
+        console.log(yPos)
+        console.log(yPos + 425)
+        const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.2);
+        const pole2 = poles.create(1200, yPos + 425, 'pole').setOrigin(0.5, 0.2);
+        pole1.setVelocityX(-100); 
+        pole2.setVelocityX(-100); 
         // poles.setVelocityY(-200)
-        pole.body.setAllowGravity(false)
-        pole.body.setImmovable(true)
-        pole.outOfBoundsKill = true;
+        pole1.body.setAllowGravity(false)
+        pole1.body.setImmovable(true)
+        pole1.outOfBoundsKill = true;
+        pole2.body.setAllowGravity(false)
+        pole2.body.setImmovable(true)
+        pole2.outOfBoundsKill = true;
         // poles.setCollideWorldBounds(true);
         // if (pole.x <= gameState.player.x) {
         //   gameState.score += 1;
@@ -111,8 +124,11 @@ function update() {
       let pole = gameState.allPoles[i]
       if (pole.x < gameState.player.x && !pole.scored) {
         pole.scored = true
-        gameState.score += 1;
+        gameState.score += 0.5;
         gameState.scoreText.setText(`Score: ${gameState.score}`)
+      }
+      if (pole.x <= 0) {
+        pole.destroy()
       }
     }
     // gameState.checkScore2;
