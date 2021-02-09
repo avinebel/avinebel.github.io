@@ -4,7 +4,7 @@ const gameState = {
 
 function preload() {
     this.load.image('bird', 'images/bird.png')
-    this.load.image('pole', 'images/pole.png')
+    this.load.image('pole', 'images/flappypole.png')
 }
 
 function create() {
@@ -23,11 +23,12 @@ function create() {
         function getYPos(min, max) {
           return Math.random() * (max - min) + min;
         }
-        const yPos = getYPos(0, 50)
+        const yPos = getYPos(-15, 80)
         // const yPos = Math.random() * ((config.height / 2) - 200);
         console.log(yPos)
         console.log(yPos + 425)
-        const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.3);
+        const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.3).setFlip(false, true)
+        // .setAngle(-180).flipX(true);
         const pole2 = poles.create(1200, yPos + 425, 'pole').setOrigin(0.5, 0.3);
         pole1.setVelocityX(-100); 
         pole2.setVelocityX(-100); 
