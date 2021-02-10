@@ -23,15 +23,15 @@ function create() {
         function getYPos(min, max) {
           return Math.random() * (max - min) + min;
         }
-        const yPos = getYPos(-15, 80)
+        const yPos = getYPos(-10, 80)
         // const yPos = Math.random() * ((config.height / 2) - 200);
         console.log(yPos)
         console.log(yPos + 425)
         const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.3).setFlip(false, true)
         // .setAngle(-180).flipX(true);
         const pole2 = poles.create(1200, yPos + 425, 'pole').setOrigin(0.5, 0.3);
-        pole1.setVelocityX(-100); 
-        pole2.setVelocityX(-100); 
+        pole1.setVelocityX(-150); 
+        pole2.setVelocityX(-150); 
         // poles.setVelocityY(-200)
         pole1.body.setAllowGravity(false)
         pole1.body.setImmovable(true)
@@ -46,7 +46,7 @@ function create() {
         // }
     };
     const poleLoop = this.time.addEvent({
-        delay: 2500,
+        delay: 1500,
         callback: createPole,
         callbackScope: this,
         loop: true,
@@ -109,7 +109,7 @@ function create() {
 }
 
 function update() {
-    if (gameState.cursors.up.isDown) {
+    if (gameState.cursors.up.isDown || gameState.cursors.space.isDown) {
         gameState.player.setVelocityY(-100)
         // gameState.player.setAngle(-20)
     };
