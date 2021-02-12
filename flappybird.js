@@ -18,6 +18,7 @@ function create() {
     gameState.city = this.add.image(0, 0, 'city').setOrigin(0, 0).setDepth(-3)
     gameState.ground = this.physics.add.image(0, 554, 'ground').setOrigin(0, 0).setDepth(-2)
     gameState.ground.setCollideWorldBounds(true)
+    gameState.ground.setImmovable(true)
 
     gameState.scoreText = this.add.text(10, 10, `Score: 0`, { fontSize: '50px', fill: '#FF0000' }).setDepth(4)
 
