@@ -4,7 +4,9 @@ const gameState = {
 
 function preload() {
     this.load.image('bird', 'images/bird.png')
-    this.load.image('pole', 'images/flappypole.png')
+    this.load.image('pole', 'images/pole.png')
+    this.load.image('city', 'images/city.png')
+    this.load.image('ground', 'images/ground.png')
 }
 
 function create() {
@@ -13,10 +15,15 @@ function create() {
 
     gameState.cursors = this.input.keyboard.createCursorKeys();
 
+    gameState.city = this.add.image(0, 0, 'city').setOrigin(0, 0).setDepth(-3)
+    gameState.ground = this.physics.add.image(0, 554, 'ground').setOrigin(0, 0).setDepth(-2)
+    gameState.ground.setCollideWorldBounds(true)
+
     gameState.scoreText = this.add.text(10, 10, `Score: 0`, { fontSize: '50px', fill: '#FF0000' }).setDepth(4)
 
-    const poles = this.physics.add.group();
+    this.physics.add.collider(gameState.player, gameState.ground)
 
+    const poles = this.physics.add.group();
     function createPole() {
       //how to make it with holes, canvas height of 620
       //i think the holes should be 200 gap
@@ -29,7 +36,7 @@ function create() {
         console.log(yPos + 425)
         const pole1 = poles.create(1200, yPos, 'pole').setOrigin(0.5, 0.3).setFlip(false, true)
         // .setAngle(-180).flipX(true);
-        const pole2 = poles.create(1200, yPos + 425, 'pole').setOrigin(0.5, 0.3);
+        const pole2 = poles.create(1200, yPos + 450, 'pole').setOrigin(0.5, 0.3);
         pole1.setVelocityX(-150); 
         pole2.setVelocityX(-150); 
         // poles.setVelocityY(-200)
@@ -39,6 +46,8 @@ function create() {
         pole2.body.setAllowGravity(false)
         pole2.body.setImmovable(true)
         pole2.outOfBoundsKill = true;
+        gameState.poleTop = pole1
+        gameState.poleBottom = pole2
         // poles.setCollideWorldBounds(true);
         // if (pole.x <= gameState.player.x) {
         //   gameState.score += 1;
@@ -106,6 +115,7 @@ function create() {
     //     gameState.player.angle += -1
     //   }
     // })
+    gameState.loopOfPoles = poleLoop
 }
 
 function update() {
@@ -132,7 +142,11 @@ function update() {
         pole.destroy()
       }
     }
-    // gameState.checkScore2;
+    // if (gameState.score >= 50) {
+    //   gameState.poleTop.setVelocityX(-200)
+    //   gameState.poleBottom.setVelocityX(-200)
+    //   gameState.loopOfPoles.delay = 1000
+    // }
 }
 
 const config = {
